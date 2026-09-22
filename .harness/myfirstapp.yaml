@@ -1,0 +1,53 @@
+pipeline:
+  name: my-first-app
+  identifier: myfirstapp
+  projectIdentifier: default_project
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: myfirstapp
+        build: <+input>
+  stages:
+    - stage:
+        name: dev
+        identifier: dev
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          caching:
+            enabled: true
+            override: true
+          buildIntelligence:
+            enabled: true
+          platform:
+            os: Windows
+            arch: Arm64
+          runtime:
+            type: Docker
+            spec:
+              harnessImageConnectorRef: account.harnessImage
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    shell: Sh
+                    command: |-
+                      Write-Host "=== Building React App ==="
+                      Set-Location "C:\Users\Ankita\Desktop\Playground\Frontend\my-react-app"
+
+                      npm install
+                      npm run lint
+                      npm run build
+
+                      Write-Host ""
+                      Write-Host "=== Running the App ==="
+                      npm run preview
+
+                      Write-Host ""
+                      Write-Host "=== Pipeline Success! ==="
