@@ -4,12 +4,6 @@ pipeline:
   projectIdentifier: apexworkflow
   orgIdentifier: default
   tags: {}
-  properties:
-    ci:
-      codebase:
-        connectorRef: Git
-        repoName: https://github.com/sushant-h30/my-react-app.git
-        build: <+input>
   stages:
     - stage:
         name: Dev
@@ -52,3 +46,9 @@ pipeline:
 
                       Write-Host ""
                       Write-Host "=== Pipeline Success! ==="
+  properties:
+    ci:
+      codebase:
+        connectorRef: Git_Account
+        repoName: my-react-app
+        build: <+input>
