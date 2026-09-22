@@ -19,7 +19,7 @@ pipeline:
             enabled: true
           platform:
             os: Linux
-            arch: <+input>
+            arch: Amd64
           runtime:
             type: Docker
             spec:
