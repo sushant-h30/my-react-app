@@ -18,8 +18,8 @@ pipeline:
           buildIntelligence:
             enabled: true
           platform:
-            os: Windows
-            arch: Arm64
+            os: Linux
+            arch: Amd64
           runtime:
             type: Docker
             spec:
