@@ -1,0 +1,54 @@
+pipeline:
+  name: apex-workflow
+  identifier: apexworkflow
+  projectIdentifier: apexworkflow
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: Git
+        repoName: https://github.com/sushant-h30/my-react-app.git
+        build: <+input>
+  stages:
+    - stage:
+        name: Dev
+        identifier: Dev
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          caching:
+            enabled: true
+            override: true
+          buildIntelligence:
+            enabled: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Docker
+            spec:
+              harnessImageConnectorRef: account.harnessImage
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Run_1
+                  identifier: Run_1
+                  spec:
+                    shell: Sh
+                    command: |-
+                      Write-Host "=== Building React App ==="
+                      Set-Location "C:\Users\Ankita\Desktop\Playground\Frontend\my-react-app"
+
+                      npm install
+                      npm run lint
+                      npm run build
+
+                      Write-Host ""
+                      Write-Host "=== Running the App ==="
+                      npm run preview
+
+                      Write-Host ""
+                      Write-Host "=== Pipeline Success! ==="
