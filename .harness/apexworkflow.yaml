@@ -60,7 +60,7 @@ pipeline:
 
                       echo "=== Building React App ==="
 
-                      npm install
+                      npm install --package-lock=false
                       npm run lint
                       npm run build
 
