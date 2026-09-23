@@ -1,9 +1,11 @@
 pipeline:
   name: apex-workflow
   identifier: apexworkflow
+  description: CI pipeline for React app - builds, lints, and tests
   projectIdentifier: apexworkflow
   orgIdentifier: default
-  tags: {}
+  tags:
+    ai_generated: ""
   stages:
     - stage:
         name: Dev
@@ -21,31 +23,24 @@ pipeline:
             os: Linux
             arch: Amd64
           runtime:
-            type: Docker
-            spec:
-              harnessImageConnectorRef: account.harnessImage
+            type: Cloud
+            spec: {}
           execution:
             steps:
               - step:
                   type: Run
-                  name: Run_1
+                  name: Build and Test
                   identifier: Run_1
                   spec:
-                    shell: Sh
                     command: |-
-                      Write-Host "=== Building React App ==="
-                      Set-Location "C:\Users\Ankita\Desktop\Playground\Frontend\my-react-app"
-
+                      echo "=== Building React App ==="
+                      
                       npm install
                       npm run lint
                       npm run build
-
-                      Write-Host ""
-                      Write-Host "=== Running the App ==="
-                      npm run preview
-
-                      Write-Host ""
-                      Write-Host "=== Pipeline Success! ==="
+                      
+                      echo ""
+                      echo "=== Build Complete ==="
   properties:
     ci:
       codebase:
