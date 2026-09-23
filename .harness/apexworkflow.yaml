@@ -37,6 +37,12 @@ pipeline:
                     command: |-
                       set -e
 
+                      $HARNESS_WORKSPACE/bi/auto-injection || true
+
+                      export NVM_DIR="/home/sushant/.nvm"
+                      . "$NVM_DIR/nvm.sh"
+                      nvm use 24
+
                       echo "=== Node Environment ==="
                       echo "PATH=$PATH"
                       which node
