@@ -51,10 +51,9 @@ pipeline:
                       node -p "process.platform"
                       npm config get cache
 
-                      echo "=== Fixing Workspace Permissions ==="
-                      sudo chown -R "$(whoami):$(id -gn)" "$HARNESS_WORKSPACE"
-
                       echo "=== Workspace Permissions ==="
+                      whoami
+                      id
                       ls -ld "$HARNESS_WORKSPACE"
                       ls -l "$HARNESS_WORKSPACE/package-lock.json"
 
