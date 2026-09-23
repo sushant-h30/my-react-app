@@ -23,8 +23,9 @@ pipeline:
             os: Linux
             arch: Amd64
           runtime:
-            type: Cloud
-            spec: {}
+            type: Docker
+            spec:
+              harnessImageConnectorRef: account.harnessImage
           execution:
             steps:
               - step:
@@ -34,11 +35,11 @@ pipeline:
                   spec:
                     command: |-
                       echo "=== Building React App ==="
-                      
+
                       npm install
                       npm run lint
                       npm run build
-                      
+
                       echo ""
                       echo "=== Build Complete ==="
   properties:
