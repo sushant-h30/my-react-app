@@ -33,7 +33,19 @@ pipeline:
                   name: Build and Test
                   identifier: Run_1
                   spec:
+                    shell: Sh
                     command: |-
+                      set -e
+
+                      echo "=== Node Environment ==="
+                      echo "PATH=$PATH"
+                      which node
+                      which npm
+                      node -v
+                      npm -v
+                      node -p "process.platform"
+                      npm config get cache
+
                       echo "=== Building React App ==="
 
                       npm install
