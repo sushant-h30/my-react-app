@@ -54,6 +54,14 @@ pipeline:
 
                       echo "=== Building React App ==="
 
+                      echo "=== Workspace permissions ==="
+                      whoami
+                      id
+                      pwd
+                      ls -ld "$HARNESS_WORKSPACE"
+                      ls -l "$HARNESS_WORKSPACE/package-lock.json"
+                      stat "$HARNESS_WORKSPACE/package-lock.json"
+
                       npm install
                       npm run lint
                       npm run build
