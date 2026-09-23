@@ -44,7 +44,6 @@ pipeline:
                       nvm use 24
 
                       echo "=== Node Environment ==="
-                      echo "PATH=$PATH"
                       which node
                       which npm
                       node -v
@@ -52,15 +51,14 @@ pipeline:
                       node -p "process.platform"
                       npm config get cache
 
-                      echo "=== Building React App ==="
+                      echo "=== Fixing Workspace Permissions ==="
+                      sudo chown -R "$(whoami):$(id -gn)" "$HARNESS_WORKSPACE"
 
-                      echo "=== Workspace permissions ==="
-                      whoami
-                      id
-                      pwd
+                      echo "=== Workspace Permissions ==="
                       ls -ld "$HARNESS_WORKSPACE"
                       ls -l "$HARNESS_WORKSPACE/package-lock.json"
-                      stat "$HARNESS_WORKSPACE/package-lock.json"
+
+                      echo "=== Building React App ==="
 
                       npm install
                       npm run lint
