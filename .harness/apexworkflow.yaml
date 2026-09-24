@@ -65,6 +65,14 @@ pipeline:
 
                       echo ""
                       echo "=== Build Complete ==="
+              - step:
+                  type: GCSUpload
+                  name: GCSUpload_1
+                  identifier: GCSUpload_1
+                  spec:
+                    connectorRef: GCP_Connector
+                    bucket: gs://my-react-poc
+                    sourcePath: dist
   properties:
     ci:
       codebase:
