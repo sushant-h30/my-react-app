@@ -71,7 +71,7 @@ pipeline:
                   identifier: GCSUpload_1
                   spec:
                     connectorRef: GCP_Connector
-                    bucket: gs://my-react-poc
+                    bucket: my-react-poc
                     sourcePath: dist
   properties:
     ci:
